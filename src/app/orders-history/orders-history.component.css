@@ -123,3 +123,51 @@ h2 {
     font-size: 12px;
   }
 }
+
+/* New order items styling */
+.order-items {
+  margin: 15px 0;
+  border-left: 3px solid #D2691E;
+  padding-left: 15px;
+}
+
+.order-item {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.item-name {
+  font-weight: bold;
+  color: #8B4513;
+}
+
+.item-quantity {
+  color: #666;
+  font-weight: bold;
+}
+
+.item-price {
+  font-weight: bold;
+  color: #D2691E;
+}
+
+.item-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}

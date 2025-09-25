@@ -23,10 +23,30 @@
         </div>
         <div class="order-details">
           <p><strong>Customer:</strong> {{ order.customerName }}</p>
-          <p><strong>Coffee:</strong> {{ order.coffee.name }}</p>
-          <p><strong>Description:</strong> {{ order.coffee.description }}</p>
-          <p><strong>Quantity:</strong> {{ order.quantity }}</p>
-          <p><strong>Unit Price:</strong> ${{ order.coffee.price.toFixed(2) }}</p>
+
+          <!-- Legacy order format (single coffee) -->
+          <div *ngIf="isLegacyOrder(order)">
+            <p><strong>Coffee:</strong> {{ getLegacyOrder(order).coffee.name }}</p>
+            <p><strong>Description:</strong> {{ getLegacyOrder(order).coffee.description }}</p>
+            <p><strong>Quantity:</strong> {{ getLegacyOrder(order).quantity }}</p>
+            <p><strong>Unit Price:</strong> ${{ getLegacyOrder(order).coffee.price.toFixed(2) }}</p>
+          </div>
+
+          <!-- New order format (multiple items) -->
+          <div *ngIf="isNewOrder(order)">
+            <p><strong>Items:</strong> {{ getTotalItems(order) }} item{{ getTotalItems(order) > 1 ? 's' : '' }}</p>
+            <div class="order-items">
+              <div *ngFor="let item of order.items" class="order-item">
+                <div class="item-details">
+                  <span class="item-name">{{ item.coffee.name }}</span>
+                  <span class="item-quantity">x{{ item.quantity }}</span>
+                  <span class="item-price">${{ (item.coffee.price * item.quantity).toFixed(2) }}</span>
+                </div>
+                <p class="item-description">{{ item.coffee.description }}</p>
+              </div>
+            </div>
+          </div>
+
           <p class="total-price"><strong>Total: ${{ order.totalPrice.toFixed(2) }}</strong></p>
         </div>
       </div>

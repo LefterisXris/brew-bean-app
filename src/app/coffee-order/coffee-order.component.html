@@ -5,55 +5,113 @@
     <p>✅ Order placed successfully!</p>
   </div>
 
-  <div class="coffee-menu">
-    <h3>Select a Coffee</h3>
-    <div class="coffee-grid">
-      <div
-        *ngFor="let coffee of coffees"
-        class="coffee-card"
-        [class.selected]="selectedCoffee?.id === coffee.id"
-        (click)="selectCoffee(coffee)">
-        <h4>{{ coffee.name }}</h4>
-        <p class="description">{{ coffee.description }}</p>
-        <p class="price">${{ coffee.price.toFixed(2) }}</p>
-      </div>
-    </div>
+  <div *ngIf="itemAddedMessage" class="item-added-message">
+    <p>{{ itemAddedMessage }}</p>
   </div>
 
-  <div *ngIf="selectedCoffee" class="order-form">
-    <h3>Order Details</h3>
-    <div class="form-group">
-      <label for="customerName">Your Name:</label>
-      <input
-        type="text"
-        id="customerName"
-        [(ngModel)]="customerName"
-        placeholder="Enter your name"
-        required>
+  <div class="main-content">
+    <!-- Coffee Menu -->
+    <div class="coffee-menu">
+      <h3>Select a Coffee</h3>
+      <div class="coffee-grid">
+        <div
+          *ngFor="let coffee of coffees"
+          class="coffee-card"
+          [class.selected]="selectedCoffee?.id === coffee.id"
+          (click)="selectCoffee(coffee)">
+          <h4>{{ coffee.name }}</h4>
+          <p class="description">{{ coffee.description }}</p>
+          <p class="price">${{ coffee.price.toFixed(2) }}</p>
+        </div>
+      </div>
+
+      <!-- Add to Basket Form -->
+      <div *ngIf="selectedCoffee" class="add-to-basket-form">
+        <h3>Add to Basket</h3>
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            [(ngModel)]="quantity"
+            min="1"
+            max="10">
+        </div>
+
+        <div class="selected-summary">
+          <p><strong>Selected: {{ selectedCoffee.name }}</strong></p>
+          <p>Price per cup: ${{ selectedCoffee.price.toFixed(2) }}</p>
+          <p>Quantity: {{ quantity }}</p>
+          <p class="total">Subtotal: ${{ getTotalPrice().toFixed(2) }}</p>
+        </div>
+
+        <button
+          (click)="addToBasket()"
+          class="add-to-basket-btn">
+          Add to Basket
+        </button>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="quantity">Quantity:</label>
-      <input
-        type="number"
-        id="quantity"
-        [(ngModel)]="quantity"
-        min="1"
-        max="10">
-    </div>
+    <!-- Shopping Basket -->
+    <div class="shopping-basket">
+      <h3>Shopping Basket
+        <span *ngIf="getBasketItemCount() > 0" class="basket-count">({{ getBasketItemCount() }} items)</span>
+      </h3>
 
-    <div class="order-summary">
-      <p><strong>Selected: {{ selectedCoffee.name }}</strong></p>
-      <p>Price per cup: ${{ selectedCoffee.price.toFixed(2) }}</p>
-      <p>Quantity: {{ quantity }}</p>
-      <p class="total">Total: ${{ getTotalPrice().toFixed(2) }}</p>
-    </div>
+      <div *ngIf="basket.length === 0" class="empty-basket">
+        <p>Your basket is empty. Select coffees to add them to your basket!</p>
+      </div>
 
-    <button
-      (click)="placeOrder()"
-      [disabled]="!customerName.trim()"
-      class="place-order-btn">
-      Place Order
-    </button>
+      <div *ngIf="basket.length > 0" class="basket-items">
+        <div *ngFor="let item of basket" class="basket-item">
+          <div class="item-info">
+            <h4>{{ item.coffee.name }}</h4>
+            <p class="item-price">${{ item.coffee.price.toFixed(2) }} each</p>
+          </div>
+          <div class="item-controls">
+            <div class="quantity-controls">
+              <button
+                (click)="updateBasketQuantity(item.coffee.id, item.quantity - 1)"
+                class="qty-btn">-</button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button
+                (click)="updateBasketQuantity(item.coffee.id, item.quantity + 1)"
+                class="qty-btn">+</button>
+            </div>
+            <p class="item-total">${{ (item.coffee.price * item.quantity).toFixed(2) }}</p>
+            <button
+              (click)="removeFromBasket(item.coffee.id)"
+              class="remove-btn">×</button>
+          </div>
+        </div>
+
+        <div class="basket-summary">
+          <div class="basket-total">
+            <strong>Total: ${{ getBasketTotal().toFixed(2) }}</strong>
+          </div>
+        </div>
+
+        <!-- Customer Info and Place Order -->
+        <div class="checkout-form">
+          <div class="form-group">
+            <label for="customerName">Your Name:</label>
+            <input
+              type="text"
+              id="customerName"
+              [(ngModel)]="customerName"
+              placeholder="Enter your name"
+              required>
+          </div>
+
+          <button
+            (click)="placeOrder()"
+            [disabled]="!customerName.trim()"
+            class="place-order-btn">
+            Place Order - ${{ getBasketTotal().toFixed(2) }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

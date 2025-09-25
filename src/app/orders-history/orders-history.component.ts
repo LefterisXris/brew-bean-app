@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoffeeService } from '../coffee.service';
-import { Order } from '../models/coffee.model';
+import { Order, LegacyOrder } from '../models/coffee.model';
 
 @Component({
   selector: 'app-orders-history',
@@ -11,7 +11,7 @@ import { Order } from '../models/coffee.model';
   styleUrl: './orders-history.component.css'
 })
 export class OrdersHistoryComponent implements OnInit {
-  orders: Order[] = [];
+  orders: (Order | LegacyOrder)[] = [];
   loading: boolean = true;
 
   constructor(private coffeeService: CoffeeService) {}
@@ -42,5 +42,24 @@ export class OrdersHistoryComponent implements OnInit {
 
   getTotalSpent(): number {
     return this.orders.reduce((total, order) => total + order.totalPrice, 0);
+  }
+
+  isLegacyOrder(order: Order | LegacyOrder): order is LegacyOrder {
+    return 'coffee' in order;
+  }
+
+  isNewOrder(order: Order | LegacyOrder): order is Order {
+    return 'items' in order;
+  }
+
+  getTotalItems(order: Order | LegacyOrder): number {
+    if (this.isLegacyOrder(order)) {
+      return order.quantity;
+    }
+    return order.items.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  getLegacyOrder(order: Order | LegacyOrder): LegacyOrder {
+    return order as LegacyOrder;
   }
 }
