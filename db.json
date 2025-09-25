@@ -1,0 +1,75 @@
+{
+  "coffees": [
+    {
+      "id": "1",
+      "name": "Espresso",
+      "price": 3.5,
+      "description": "Rich and bold single shot"
+    },
+    {
+      "id": "2",
+      "name": "Americano",
+      "price": 4,
+      "description": "Espresso with hot water"
+    },
+    {
+      "id": "3",
+      "name": "Cappuccino",
+      "price": 4.5,
+      "description": "Espresso with steamed milk and foam"
+    },
+    {
+      "id": "4",
+      "name": "Latte",
+      "price": 5,
+      "description": "Espresso with steamed milk"
+    },
+    {
+      "id": "5",
+      "name": "Mocha",
+      "price": 5.5,
+      "description": "Espresso with chocolate and steamed milk"
+    }
+  ],
+  "orders": [
+    {
+      "id": "6a6d",
+      "coffee": {
+        "id": "1",
+        "name": "Espresso",
+        "price": 3.5,
+        "description": "Rich and bold single shot"
+      },
+      "quantity": 7,
+      "totalPrice": 24.5,
+      "orderDate": "2025-09-25T09:15:59.740Z",
+      "customerName": "Chubb Team1 (the best)"
+    },
+    {
+      "id": "d99c",
+      "coffee": {
+        "id": "3",
+        "name": "Cappuccino",
+        "price": 4.5,
+        "description": "Espresso with steamed milk and foam"
+      },
+      "quantity": 1,
+      "totalPrice": 4.5,
+      "orderDate": "2025-09-25T09:16:19.042Z",
+      "customerName": "John Angelidis"
+    },
+    {
+      "id": "610f",
+      "coffee": {
+        "id": "4",
+        "name": "Latte",
+        "price": 5,
+        "description": "Espresso with steamed milk"
+      },
+      "quantity": 2,
+      "totalPrice": 10,
+      "orderDate": "2025-09-25T09:18:02.080Z",
+      "customerName": "George"
+    }
+  ]
+}

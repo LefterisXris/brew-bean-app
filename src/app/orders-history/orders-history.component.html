@@ -1,0 +1,35 @@
+<div class="orders-history-container">
+  <h2>Your Order History</h2>
+
+  <div *ngIf="loading" class="loading">
+    <p>Loading orders...</p>
+  </div>
+
+  <div *ngIf="!loading && orders.length === 0" class="no-orders">
+    <p>No orders found. <a href="#" routerLink="/order">Place your first order!</a></p>
+  </div>
+
+  <div *ngIf="!loading && orders.length > 0">
+    <div class="summary">
+      <p><strong>Total Orders: {{ orders.length }}</strong></p>
+      <p><strong>Total Spent: ${{ getTotalSpent().toFixed(2) }}</strong></p>
+    </div>
+
+    <div class="orders-list">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-header">
+          <h3>Order #{{ order.id }}</h3>
+          <span class="order-date">{{ formatDate(order.orderDate) }}</span>
+        </div>
+        <div class="order-details">
+          <p><strong>Customer:</strong> {{ order.customerName }}</p>
+          <p><strong>Coffee:</strong> {{ order.coffee.name }}</p>
+          <p><strong>Description:</strong> {{ order.coffee.description }}</p>
+          <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+          <p><strong>Unit Price:</strong> ${{ order.coffee.price.toFixed(2) }}</p>
+          <p class="total-price"><strong>Total: ${{ order.totalPrice.toFixed(2) }}</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+.orders-history-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  color: #8B4513;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loading, .no-orders {
+  text-align: center;
+  padding: 40px 0;
+  color: #666;
+}
+
+.no-orders a {
+  color: #8B4513;
+  text-decoration: none;
+}
+
+.no-orders a:hover {
+  text-decoration: underline;
+}
+
+.summary {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border-left: 4px solid #8B4513;
+}
+
+.summary p {
+  margin: 5px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.order-header {
+  background-color: #8B4513;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.order-date {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.order-details {
+  padding: 20px;
+  background-color: white;
+}
+
+.order-details p {
+  margin: 8px 0;
+  color: #333;
+}
+
+.order-details strong {
+  color: #8B4513;
+}
+
+.total-price {
+  font-size: 16px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.total-price strong {
+  color: #D2691E;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .orders-history-container {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .order-header h3 {
+    font-size: 16px;
+  }
+
+  .order-date {
+    font-size: 12px;
+  }
+}
