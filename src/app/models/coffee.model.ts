@@ -10,12 +10,21 @@ export interface BasketItem {
   quantity: number;
 }
 
+export type PaymentMethod = 'cash' | 'credit-card' | 'google-pay' | 'apple-pay';
+
+export interface PaymentInfo {
+  method: PaymentMethod;
+  status: 'pending' | 'processing' | 'completed' | 'failed';
+  transactionId?: string;
+}
+
 export interface Order {
   id: number;
   items: BasketItem[];
   totalPrice: number;
   orderDate: string;
   customerName: string;
+  paymentInfo?: PaymentInfo;
 }
 
 // Legacy order interface for backward compatibility

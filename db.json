@@ -70,6 +70,134 @@
       "totalPrice": 10,
       "orderDate": "2025-09-25T09:18:02.080Z",
       "customerName": "George"
+    },
+    {
+      "id": "78f2",
+      "items": [
+        {
+          "coffee": {
+            "id": "1",
+            "name": "Espresso",
+            "price": 3.5,
+            "description": "Rich and bold single shot"
+          },
+          "quantity": 2
+        },
+        {
+          "coffee": {
+            "id": "2",
+            "name": "Americano",
+            "price": 4,
+            "description": "Espresso with hot water"
+          },
+          "quantity": 1
+        },
+        {
+          "coffee": {
+            "id": "4",
+            "name": "Latte",
+            "price": 5,
+            "description": "Espresso with steamed milk"
+          },
+          "quantity": 2
+        }
+      ],
+      "totalPrice": 21,
+      "orderDate": "2025-09-25T09:29:50.484Z",
+      "customerName": "Chubb Team1 (the best)"
+    },
+    {
+      "id": "7ca2",
+      "items": [
+        {
+          "coffee": {
+            "id": "3",
+            "name": "Cappuccino",
+            "price": 4.5,
+            "description": "Espresso with steamed milk and foam"
+          },
+          "quantity": 2
+        },
+        {
+          "coffee": {
+            "id": "4",
+            "name": "Latte",
+            "price": 5,
+            "description": "Espresso with steamed milk"
+          },
+          "quantity": 1
+        },
+        {
+          "coffee": {
+            "id": "1",
+            "name": "Espresso",
+            "price": 3.5,
+            "description": "Rich and bold single shot"
+          },
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 17.5,
+      "orderDate": "2025-09-25T09:45:15.180Z",
+      "customerName": "Lef",
+      "paymentInfo": {
+        "method": "apple-pay",
+        "status": "completed",
+        "transactionId": "TXN-1758793515180-XD0MMV28I"
+      }
+    },
+    {
+      "id": "da11",
+      "items": [
+        {
+          "coffee": {
+            "id": "5",
+            "name": "Mocha",
+            "price": 5.5,
+            "description": "Espresso with chocolate and steamed milk"
+          },
+          "quantity": 2
+        },
+        {
+          "coffee": {
+            "id": "3",
+            "name": "Cappuccino",
+            "price": 4.5,
+            "description": "Espresso with steamed milk and foam"
+          },
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 15.5,
+      "orderDate": "2025-09-25T09:46:17.156Z",
+      "customerName": "lef2",
+      "paymentInfo": {
+        "method": "apple-pay",
+        "status": "completed",
+        "transactionId": "TXN-1758793577156-H1NDDKFBJ"
+      }
+    },
+    {
+      "id": "8af5",
+      "items": [
+        {
+          "coffee": {
+            "id": "5",
+            "name": "Mocha",
+            "price": 5.5,
+            "description": "Espresso with chocolate and steamed milk"
+          },
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 5.5,
+      "orderDate": "2025-09-25T09:47:41.556Z",
+      "customerName": "Konstantina",
+      "paymentInfo": {
+        "method": "google-pay",
+        "status": "completed",
+        "transactionId": "TXN-1758793661556-D9HF0QP9C"
+      }
     }
   ]
 }

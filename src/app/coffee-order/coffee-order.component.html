@@ -92,7 +92,7 @@
           </div>
         </div>
 
-        <!-- Customer Info and Place Order -->
+        <!-- Customer Info and Payment -->
         <div class="checkout-form">
           <div class="form-group">
             <label for="customerName">Your Name:</label>
@@ -104,11 +104,38 @@
               required>
           </div>
 
+          <!-- Payment Method Selection -->
+          <div class="form-group">
+            <label>Payment Method:</label>
+            <div class="payment-options">
+              <div
+                *ngFor="let option of paymentOptions"
+                class="payment-option"
+                [class.selected]="selectedPaymentMethod === option.value"
+                (click)="selectedPaymentMethod = option.value">
+                <span class="payment-icon">{{ option.icon }}</span>
+                <span class="payment-label">{{ option.label }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Status Message -->
+          <div *ngIf="paymentMessage" class="payment-message">
+            <p>{{ paymentMessage }}</p>
+          </div>
+
           <button
             (click)="placeOrder()"
-            [disabled]="!customerName.trim()"
-            class="place-order-btn">
-            Place Order - ${{ getBasketTotal().toFixed(2) }}
+            [disabled]="!customerName.trim() || isProcessingPayment"
+            class="place-order-btn"
+            [class.processing]="isProcessingPayment">
+            <span *ngIf="!isProcessingPayment">
+              {{ getPaymentMethodLabel(selectedPaymentMethod) === 'Cash' ? 'Place Order' : 'Pay' }} - ${{ getBasketTotal().toFixed(2) }}
+            </span>
+            <span *ngIf="isProcessingPayment">
+              <span class="spinner"></span>
+              Processing...
+            </span>
           </button>
         </div>
       </div>
